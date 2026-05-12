@@ -65,8 +65,19 @@ public class SerializationBenchmarks
         MeasureRaw30("Xml_Deserialize", () => _xmlService.Deserialize(_xmlBytes), _xmlBytes.Length, objectCount, csvLines);
         MeasureRaw30("Protobuf_Deserialize", () => _protobufService.Deserialize(_protobufBytes), _protobufBytes.Length, objectCount, csvLines);
 
-        File.WriteAllLines("Results/raw-iterations.csv", csvLines);
+       var resultPath = "/Users/mads/Desktop/SYSTEMVET/T6 SYSTEMVET/examensarbete/exjobb_test1/Results/raw-iterations.csv";
+
+Directory.CreateDirectory(Path.GetDirectoryName(resultPath)!);
+
+File.WriteAllLines(resultPath, csvLines);
+
+Console.WriteLine($"Saved CSV to: {resultPath}");
+
+        File.WriteAllLines(resultPath, csvLines);
+
+        Console.WriteLine($"Saved CSV to: {resultPath}");
     }
+
 
     private static void MeasureRaw30(
         string methodName,
